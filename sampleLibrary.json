@@ -1,0 +1,2391 @@
+{
+  "name": "MMRPG Complete Library",
+  "origins": [
+    {
+      "name": "High-Tech",
+      "grantedTraits": [
+        "Tech Reliance"
+      ],
+      "grantedTags": [],
+      "requiredPowers": [],
+      "description": "The character's powers arise from high-tech devices that are well beyond the limits of modern-day engineering. This can come in many forms. "
+    },
+    {
+      "name": "High-Tech: Pym Particles",
+      "grantedTraits": [
+        "Tech Reliance"
+      ],
+      "grantedTags": [],
+      "requiredPowers": [
+        "Grow 1",
+        "Shrink 1"
+      ],
+      "description": "The character uses Pym Particles (named after their inventor, Henry Pym) to dramatically grow or shrink in size. After long-enough exposure to Pym Particles, many people are able to generate such particles on their own without the need of external aid. They may still need to use extra Pym Particles to reach extremely large or small sizes. "
+    },
+    {
+      "name": "Inhuman",
+      "grantedTraits": [],
+      "grantedTags": [
+        "Inhuman Genes"
+      ],
+      "requiredPowers": [],
+      "description": "The character is a member of Homo sapiens inhumanus, a variant race of humanity genetically engineered by the Kree. For millennia, they lived isolated from the world, but they emerged in recent years, led by Black Bolt. All Inhumans carry a latent gene that can be activated by the Terrigen Mist. The explosion of a Terrigen Bomb spread the mist across the entire planet, revealing that many humans (including Kamala Khan) had Inhuman genetics. Black Bolt was later forced to destroy the Inhumans, leaving few outside of the royal family alive. The character is one of those rare Inhumans who survived. "
+    },
+    {
+      "name": "Special Training",
+      "grantedTraits": [
+        "Determination"
+      ],
+      "grantedTags": [],
+      "requiredPowers": [],
+      "description": "A skilled individual who has honed their body and mind through rigorous discipline rather than superpowers. Their abilities are capped to human-achievable skills.",
+      "adjustments": {
+        "allowedPowerSets": [
+          "Martial Arts",
+          "Melee Weapons",
+          "Ranged Weapons",
+          "Shield Bearer",
+          "Tactics"
+        ],
+        "allowedBasicPowers": [
+          "accuracy 1",
+          "accuracy 2",
+          "brawling",
+          "brilliance 1",
+          "brilliance 2",
+          "combat trickery",
+          "discipline 1",
+          "discipline 2",
+          "disguise",
+          "evasion",
+          "iconic item",
+          "iconic weapon",
+          "inspiration",
+          "integrity",
+          "mighty 1",
+          "mighty 2",
+          "slow-motion dodge",
+          "sturdy 1",
+          "sturdy 2",
+          "uncanny 1",
+          "uncanny 2"
+        ]
+      }
+    },
+    {
+      "name": "Unknown",
+      "grantedTraits": [],
+      "grantedTags": [
+        "Mysterious"
+      ],
+      "requiredPowers": [],
+      "description": "The character has developed powers but is not entirely sure how. It could be that the player or the Narrator knows, but the character does not, or maybe nobody else does either. Astonishing things happen all the time in the Marvel Multiverse, and there’s no way to classify them all. The source of these powers may be explained in time. It could turn out that the character actually has a standard type of origin, or it could be that they have an origin that's utterly unique. "
+    },
+    {
+      "name": "Weird Science",
+      "grantedTraits": [
+        "Weird"
+      ],
+      "grantedTags": [],
+      "requiredPowers": [],
+      "description": "The character is not human and probably not from Earth or at least Earth-616. The Marvel Multiverse features all sorts of different alien races. The most common of these—Kree, Skrulls and so on—have their own entries. If the character doesn't fit one of those, then this origin applies."
+    }
+  ],
+  "occupations": [
+    {
+      "name": "Adventurer",
+      "grantedTraits": [
+        "Fearless",
+        "Connections: Super Heroes or Villains"
+      ],
+      "grantedTags": [
+        "Black Market Access"
+      ]
+    },
+    {
+      "name": "Assassin",
+      "grantedTraits": [
+        "Connections: Criminal",
+        "Signature Attack"
+      ],
+      "grantedTags": [
+        "Streetwise",
+        "Villainous (common)"
+      ]
+    },
+    {
+      "name": "Criminal",
+      "grantedTraits": [
+        "Connections: Criminal"
+      ],
+      "grantedTags": [
+        "Black Market Access",
+        "Streetwise"
+      ]
+    },
+    {
+      "name": "Entertainer",
+      "grantedTraits": [
+        "Famous",
+        "Presence",
+        "Public Speaking"
+      ],
+      "grantedTags": []
+    },
+    {
+      "name": "Lawyer",
+      "grantedTraits": [
+        "Dealmaker",
+        "Legal Eagle",
+        "Public Speaking"
+      ],
+      "grantedTags": []
+    },
+    {
+      "name": "Leader",
+      "grantedTraits": [
+        "Presence"
+      ],
+      "grantedTags": [
+        "Authority",
+        "Powerful"
+      ]
+    },
+    {
+      "name": "Military",
+      "grantedTraits": [
+        "Battle Ready",
+        "Connections: Military",
+        "Situational Awareness"
+      ],
+      "grantedTags": []
+    },
+    {
+      "name": "Scientist",
+      "grantedTraits": [
+        "Inventor",
+        "Scientific Expertise"
+      ],
+      "grantedTags": [
+        "Lab Access"
+      ]
+    },
+    {
+      "name": "Student",
+      "grantedTraits": [
+        "Quick Learner"
+      ],
+      "grantedTags": [
+        "Mentor",
+        "Obligation: School"
+      ]
+    }
+  ],
+  "traits": [
+    {
+      "name": "Battle Ready",
+      "description": "The character is always mentally prepared for any sort of trouble to start. Add +30 Focus.",
+      "adjustments": {
+        "focusMaxBonus": 30
+      }
+    },
+    {
+      "name": "Beguiling",
+      "description": "The character has an edge when making an Ego check to persuade someone who could be attracted to them.",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on Ego checks to persuade someone who could be attracted to you"
+        }
+      }
+    },
+    {
+      "name": "Big",
+      "description": "The character's size is big, which applies -1 to their Melee and Agility defenses, adds +1 to their Run Speed, and increases their reach to 2. They still occupy a single space. ",
+      "adjustments": {
+        "size": "big"
+      }
+    },
+    {
+      "name": "Bloodthirsty",
+      "description": "The character likes hurting people — even killing them. After they knock someone unconscious, they must make a Challenging Ego check to keep from continuing to attack them until they're dead. A character with this trait cannot take the Heroic tag. "
+    },
+    {
+      "name": "Combat Reflexes",
+      "description": "TThe character can react quickly in combat. This grants them one additional reaction each turn. ",
+      "adjustments": {
+        "featureNote": {
+          "reaction": "+1 Reaction Action"
+        }
+      }
+    },
+    {
+      "name": "Connections",
+      "description": "The character knows someone with access to and knowledge of a particular field. The connection could be a reporter, a police officer, a politician, a mobster and so on. By making an Ego check, the character can call on their contact to provide help in the form of clues, information or resources. The Narrator determines the TN of the Ego check based on the favor requested. This trait can be selected multiple times, using many different types. These include Celebrities, Community, Criminal, Espionage, Military, Outsiders, Police, Professional, Sources, Super Heroes and so on.",
+      "repeatable": true,
+      "customizable": {
+        "type": "freeText",
+        "placeholder": "e.g., Police, Maggia, S.H.I.E.L.D."
+      }
+    },
+    {
+      "name": "Dealmaker",
+      "description": "The character is skilled at the art of negotiation. They have an edge on action checks that have to do with making deals. ",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on checks that have to do with making deals"
+        }
+      }
+    },
+    {
+      "name": "Determination",
+      "description": "The character never gives up, even when they feel like they're at their worst. While demoralized, they do not gain trouble on all actions, though they still cannot maintain concentration or spend further Focus. "
+    },
+    {
+      "name": "Enhanced Physique",
+      "description": "The character is stronger than regular humans. Treat them as one size bigger for lifting, carrying, swinging and throwing things. (This does not stack with other factors.)",
+      "adjustments": {
+        "liftSizeStep": 1
+      }
+    },
+    {
+      "name": "Extra Occupation",
+      "description": "The character has another occupation in addition to their first one. The player can choose any occupation they qualify for. They gain all the traits and tags associated with it."
+    },
+    {
+      "name": "Famous",
+      "description": "The character is widely known — at least among a certain group of people or a population. They may be well-liked or they may be hated, but either way, they are famous. They have an edge when making an Ego check to persuade someone who thinks favorably of them. They have trouble when making an Ego check to persuade someone who dislikes them. If the character has a secret identity, this trait works for only one of their identities. However, it can be taken multiple times for multiple identities. ",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on Ego checks to persuade someone who thinks favorably of them - Trouble on Ego check to persuade someone who dislikes them"
+        }
+      }
+    },
+    {
+      "name": "Fearless",
+      "description": "The character is extremely brave. They have an edge on any action checks required to deal with fear. "
+    },
+    {
+      "name": "Free Running",
+      "description": "The character has an edge on Agility checks made to perform acrobatics during a movement action. ",
+      "adjustments": {
+        "featureNote": {
+          "agility": "Edge on Agility checks to perform acrobatics during a movement action"
+        }
+      }
+    },
+    {
+      "name": "Gearhead",
+      "description": "The character knows their way around machines. They have an edge on Logic checks to figure out how any machine works. ",
+      "adjustments": {
+        "featureNote": {
+          "logic": "Edge on Logic checks to figure out how any machine works"
+        }
+      }
+    },
+    {
+      "name": "Glibness",
+      "description": "The character can strike up a conversation with anyone at any time and can often convince them to lend a hand. They have an edge on Ego checks to persuade characters they are speaking to for the first time. ",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on Ego checks to persuade characters they are speaking to for the first time"
+        }
+      }
+    },
+    {
+      "name": "Honest",
+      "description": "The character is a terrible liar. They have trouble any time they make an Ego check that involves telling a lie. However, they have an edge on any friendly Ego (persuasion) checks in which they're truthful.",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Trouble any time they make an Ego check that involves telling a lie; Edge on any friendly Ego (persuasion) checks in which they're truthful"
+        }
+      }
+    },
+    {
+      "name": "Inventor",
+      "description": "The character is good at coming up with solutions on the fly. They have an edge on Logic checks when creating or repairing things. ",
+      "adjustments": {
+        "featureNote": {
+          "logic": "Edge on Logic checks when creating or repairing things"
+        }
+      }
+    },
+    {
+      "name": "Legal Eagle",
+      "description": "The character knows the laws of their homeland and can help others navigate them. They have an edge on Logic checks when dealing with legalities. ",
+      "adjustments": {
+        "featureNote": {
+          "logic": "Edge on Logic checks when dealing with legalities. "
+        }
+      }
+    },
+    {
+      "name": "Leverage",
+      "description": "The character is good at figuring out what people want and using it against them. They have an edge on Logic checks to investigate people and on Ego checks to persuade people they've investigated. ",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on Ego checks to persuade people they've investigated",
+          "logic": "Edge on Logic checks to investigate people"
+        }
+      }
+    },
+    {
+      "name": "Presence",
+      "description": "The character knows how to command attention on demand. They have an edge on Ego checks that involve getting people to pay attention to them or to voluntarily do things for them. ",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on Ego checks that involve getting people to pay attention to them or to voluntarily do things for them"
+        }
+      }
+    },
+    {
+      "name": "Public Speaking",
+      "description": "The character knows how to get the attention of a crowd, whether that’s at a political rally or in front of a jury or a classroom. They have an edge on Ego checks when attempting to persuade groups. ",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on Ego checks when attempting to persuade groups"
+        }
+      }
+    },
+    {
+      "name": "Quick Learner",
+      "description": "If the character fails an action check, they gain an edge on the check if they try the same action again on their next turn. "
+    },
+    {
+      "name": "Scientific Expertise",
+      "description": "The character has extensive scientific training. They have an edge on Logic checks made when dealing with scientific research. If they have access to an appropriate lab at the time, they gain a second edge on such checks. ",
+      "adjustments": {
+        "featureNote": {
+          "logic": "Edge on Logic checks made when dealing with scientific research; if they have access to an appropriate lab at the time, they gain a second edge on such checks"
+        }
+      }
+    },
+    {
+      "name": "Signature Attack",
+      "description": "The character is known for favoring a particular kind of weapon or attack power. They have an edge when making attacks that way. This trait can be taken more than once, but each time must be with a different kind of weapon or attack power. ",
+      "repeatable": true,
+      "customizable": {
+        "type": "powerSelect"
+      }
+    },
+    {
+      "name": "Situational Awareness",
+      "description": "The character is trained to always keep an eye out for trouble. They have an edge on initiative checks. ",
+      "adjustments": {
+        "featureNote": {
+          "initiative": "Edge on all Initiative checks"
+        }
+      }
+    },
+    {
+      "name": "Tech Reliance",
+      "description": "The character relies on technology for powers. When they take damage that would render them unconscious, they can instead choose to lose all of their technology-related powers and remain conscious with 1 point of Health remaining. Assuming the character has access to parts and tools, lost powers can be repaired after a battle."
+    },
+    {
+      "name": "Weird",
+      "description": "The character has something weird (or even wonderful) about them. This causes people to have strong reactions to them, both good and bad. They have an edge on all Ego checks to persuade people inclined to like them and trouble on all Ego checks against people inclined to dislike them.",
+      "adjustments": {
+        "featureNote": {
+          "ego": "Edge on all Ego checks to persuade people inclined to like them; Trouble on all Ego checks against people inclined to dislike them"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auditory Issues",
+      "description": "The character has trouble hearing that can range from partial to full deafness."
+    },
+    {
+      "name": "Authority",
+      "description": "The character has a legal authority of some kind. They might be a commissioned officer, privateer, bounty hunter, doctor, firearms dealer, lawyer, pharmacist, police officer, private investigator, mayor, governor and so on. This tag can be selected multiple times if appropriate.",
+      "repeatable": true
+    },
+    {
+      "name": "Black Market Access",
+      "description": "The character knows how and where they can buy and sell hard-to-find and potentially illegal things."
+    },
+    {
+      "name": "Headquarters",
+      "description": "The character has a base, cave or lair they can use to recover from wounds, repair or store equipment, work on inventions and so on. The location can be public or secret, and it can be as humble as a toolshed or as elaborate as an underground complex or a Manhattan skyscraper."
+    },
+    {
+      "name": "Heroic",
+      "description": "The character acts heroically. They help people in need, and they do their best not to kill—even with people who might deserve it. Restriction: The character cannot also be Villainous."
+    },
+    {
+      "name": "Hounded",
+      "description": "The character is a member of a group of people who are persecuted for simply being themselves."
+    },
+    {
+      "name": "Hunted",
+      "description": "The character is hunted by the law for crimes they have supposedly (or actually) committed. If captured by the police, they may be arrested, tried for their crimes and potentially sent to jail."
+    },
+    {
+      "name": "Inhuman Genes",
+      "description": "The character has latent Inhuman genes that cause them to develop super-powers when exposed to the Terrigen Mist. Restriction: For Inhumans only.",
+      "prerequisites": [
+        "Inhuman"
+      ]
+    },
+    {
+      "name": "Lab Access",
+      "description": "The character either owns or has access to a laboratory filled with the technical equipment, supplies and tools they need for their work. This can be anything from a well-stocked high-school classroom to a forensics lab to an industrial site."
+    },
+    {
+      "name": "Mentor",
+      "description": "The character knows an older person they can ask for advice, even when it comes to having super-powers. This tag can be selected multiple times.",
+      "repeatable": true
+    },
+    {
+      "name": "Mysterious",
+      "description": "The character does not entirely understand how or why they have powers. This can prove unsettling and perhaps even dangerous, or they can just take it in stride."
+    },
+    {
+      "name": "Obligation",
+      "description": "The character is responsible to certain people, places or organizations who rely on them. This tag can be selected multiple times, using many different categories. These include family, school, society, sports, work and so on.",
+      "repeatable": true,
+      "customizable": {
+        "type": "freeText",
+        "placeholder": "ex. family, school, society, sports, work"
+      }
+    },
+    {
+      "name": "Poor",
+      "description": "The character has little access to money and struggles to make ends meet. This can cause them all sorts of problems."
+    },
+    {
+      "name": "Powerful",
+      "description": "The character has access to the resources of their entire community. In most cases, they must be careful about how they use such resources so that they dont lose that access."
+    },
+    {
+      "name": "Public Identity",
+      "description": "The character's real identity is known to the public. This can make it easier for them to ask their friends and family—and even strangers—for help. Unfortunately, it also makes it easier for their enemies to find them and even to threaten those same friends and family."
+    },
+    {
+      "name": "Rich",
+      "description": "The character has access to plenty of money. If they want something normally and legally available to people, they can simply buy it."
+    },
+    {
+      "name": "Secret Identity",
+      "description": "The character's real identity is a secret to the public, and they must take precautions to maintain this status. This might help keep the people they care about safe from their enemies, but it can also cause strain in those same relationships."
+    },
+    {
+      "name": "Signature Weapon",
+      "description": "The character is known for owning and using a specific type of weapon, like Hawkeye's bow or Elektra's sai. This tag can be taken more than once, but each time must be with a different weapon.",
+      "customizable": {
+        "type": "freeText"
+      },
+      "repeatable": true
+    },
+    {
+      "name": "Streetwise",
+      "description": "The character knows how things are handled on the street, who's in charge of various criminal enterprises and how to avoid issues with them."
+    },
+    {
+      "name": "Villainous",
+      "description": "The character is a villain, someone who cares little for the rights of others, up to and including their right to live. Restriction: The character cannot also be Heroic."
+    },
+    {
+      "name": "Vision Issues",
+      "description": "The character has trouble seeing that can range from partial to full blindness. This can also include color blindness, astigmatisms and being nearsighted or farsighted."
+    },
+    {
+      "name": "Young",
+      "description": "The character is a minor, under 18 years old. If possible, they must report in to their parents or guardians on a regular basis."
+    }
+  ],
+  "powers": [
+    {
+      "name": "Accuracy 1",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "81",
+      "summary": "+1 to Agility damage multiplier and Agility checks (non-attack).",
+      "description": "The character adds +1 to their Agility damage multiplier, and they gain a +1 bonus to Agility checks other than attacks. ",
+      "flavor": "The character is an ace with ranged attacks.",
+      "prerequisites": [],
+      "minRank": 1,
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "agilityDmgMultBonus": 1,
+        "agilityNCBonus": 1
+      }
+    },
+    {
+      "name": "Accuracy 2",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "81",
+      "summary": "+2 to Agility damage multiplier and Agility checks (non-attack).",
+      "description": " he character adds +2 to their Agility damage multiplier, and they gain a +2 bonus to Agility checks other than attacks. ",
+      "flavor": "The character is a sharpshooter. ",
+      "prerequisites": [
+        "Accuracy 1",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "agilityDmgMultBonus": 2,
+        "agilityNCBonus": 2
+      }
+    },
+    {
+      "name": "Additional Limbs",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "",
+      "summary": "+1 Edge to Melee and Agility checks with extra prehensile limbs.",
+      "description": "The character has an additional prehensile appendage (like a tail) or a symmetrical pair of them (like arms) that can be used to lift objects, use tools or otherwise take actions that normally require the use of a hand. This grants them an edge in Melee and Agility checks. A character can have as many additional limbs as they like—within reason—but they get no additional advantages for them.",
+      "flavor": "The character has extra limbs that can grab objects and attack foes. ",
+      "minRank": 0,
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      },
+      "adjustments": {
+        "featureNote": {
+          "melee": "Edge on Melee checks",
+          "agility": "Edge on Agility checks"
+        }
+      }
+    },
+    {
+      "name": "Always Ready",
+      "set": "martial arts",
+      "cost": 0,
+      "pageRef": "",
+      "summary": "+1 Martial Arts reaction",
+      "description": "The character gains one additional reaction per round, which can be used only to activate a Martial Arts power.",
+      "flavor": "The character is prepared to fight. ",
+      "prerequisites": [
+        "Do This All Day",
+        "Rank 3"
+      ],
+      "minRank": 3,
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      },
+      "adjustments": {
+        "combatNote": {
+          "reaction": "+1 Reaction Action (Martial Arts powers only)."
+        }
+      }
+    },
+    {
+      "name": "Animal Communication",
+      "set": "telepathy",
+      "repeatable": true,
+      "pageRef": "",
+      "summary": "he character can communicate telepathically with one taxonomic order of animals",
+      "description": "The character can communicate telepathically with [CUSTOM]. They can call out to them as a group up to 500 spaces per rank away, and they can communicate specifically with ones they have met or at least seen. The communication with the animals can be verbal, visual or even more complex, such as imparting location information. There is no limit to the distance of the communication, as long as the character and the animals are in the same dimension. Friendly animals often do whatever the character asks, as long as it doesn't put them in danger—and they may be willing to risk even that for one they consider a friend. Hostile animals simply ignore all such requests—which make them a poor choice for communication. ",
+      "flavor": "The character can communicate with a type of animal. ",
+      "customizable": {
+        "type": "freeText",
+        "placeholder": "A specific taxonomic order of animals"
+      },
+      "prerequisites": [],
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": false,
+        "C": true
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Attack Stance",
+      "set": "martial arts",
+      "cost": 0,
+      "pageRef": "83",
+      "summary": "Double Melee ability bonus to damage.",
+      "description": "The character doubles their Melee ability bonus to damage. ",
+      "flavor": "The character enters an aggressive attack stance, ready to strike in any direction. ",
+      "prerequisites": [],
+      "minRank": 1,
+      "duration": {
+        "C": true
+      },
+      "action": {
+        "S": true
+      },
+      "adjustments": {
+        "meleeDmgBonus": "meleeDmgBonus * 2"
+      }
+    },
+    {
+      "name": "Banging Heads",
+      "set": "martial arts, super-strength",
+      "cost": 0,
+      "pageRef": "83",
+      "summary": "Melee check vs two enemies; deals full damage and knocks prone on success.",
+      "description": "The character makes one Melee check against the Melee defense scores of two enemies within reach. If the attack fails against either foe, it fails entirely. If the attack is a success against both foes, each enemy takes full damage.",
+      "flavor": "The character takes two nearby enemies and slams their heads into each other. ",
+      "prerequisites": [
+        "Attack Stance",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "I": true
+      },
+      "action": {
+        "S": true
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "fantasticEffect": "On a Fantastic success, each enemy is also knocked prone."
+    },
+    {
+      "name": "Bounce Back",
+      "set": "plasticity",
+      "cost": 5,
+      "summary": "Negate fall damage, stand up, and jump up to Run Speed.",
+      "flavor": "The character bounces back from even the hardest falls. ",
+      "description": "The fall doesn't damage the character. If they are prone, they stand up. If they'd like, they can also jump a number of spaces, up to their Run Speed. ",
+      "adjustments": {
+        "clearConditions": [
+          "Prone"
+        ]
+      },
+      "prerequisites": [
+        "Flexible Bones 1",
+        "Slip Free"
+      ],
+      "minRank": 2,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character takes damage from a fall or is knocked prone. "
+    },
+    {
+      "name": "Brace for Impact",
+      "set": "martial arts, shield bearer",
+      "cost": 5,
+      "variableCost": true,
+      "summary": "Spend Focus to ignore equal amount of Health damage taken.",
+      "flavor": "The character mentally toughens themselves for a fight. ",
+      "description": "For every point of Focus spent, the character can ignore 1 point of Health damage dealt by the attack. ",
+      "prerequisites": [
+        "Do This All Day",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "An enemy deals physical damage to the character. "
+    },
+    {
+      "name": "Brawling",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Use Melee defense score against Agility attacks too.",
+      "flavor": "The character has the moves and is hard to hit. ",
+      "description": "The character can use their Melee defense score against Agility attacks too. ",
+      "duration": {
+        "P": true
+      },
+      "adjustments": {
+        "featureNote": {
+          "melee": "You can use your Melee defense score against Agility attacks too. "
+        }
+      }
+    },
+    {
+      "name": "Brilliance 1",
+      "set": "basic",
+      "cost": 0,
+      "minRank": 1,
+      "summary": "+1 to Logic damage multiplier and Logic checks (non-attack).",
+      "description": "The character adds +1 to their Logic damage multiplier, and they gain a +1 bonus to Logic checks other than attacks. ",
+      "flavor": "The character puts their brain to work. ",
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "logicDmgMultBonus": 1,
+        "logicNCBonus": 1
+      }
+    },
+    {
+      "name": "Chain Strikes",
+      "set": "martial arts",
+      "cost": 5,
+      "summary": "Melee attack with edge; repeat attack on Fantastic success.",
+      "description": "The character makes a close attack with an edge. If the attack is a success, the enemy takes regular damage. On a Fantastic success, the character can also make an additional Chain Strike. ",
+      "flavor": "The character unleashes a hail of strikes. ",
+      "prerequisites": [
+        "Fast Strikes",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "fantasticEffect": "On a Fantastic success, the character can also make an additional Chain Strike."
+    },
+    {
+      "name": "Clobber",
+      "set": "super-strength",
+      "cost": 0,
+      "summary": "Melee attack; double damage and prone on Fantastic success.",
+      "description": "The character makes a close attack against an enemy. If the attack is a success, the enemy takes regular damage. ",
+      "flavor": "The character pummels their foe with enough force to knock them flat. ",
+      "prerequisites": [],
+      "minRank": 0,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage and is knocked prone."
+    },
+    {
+      "name": "Clone Moves",
+      "set": "power control",
+      "cost": 5,
+      "summary": "Copy target's Special Training powers via concentration.",
+      "description": "The character picks another character within 10 spaces and in their line of sight and duplicates all their powers that could be selected with the Special Training origin. They can now use those powers as if they were always theirs. If the copied powers have costs, the character must pay the highest of them, or a minimum of 5 Focus. When the character uses a copied power, they must pay any cost normally as well. ",
+      "flavor": "The character duplicates another character's combat moves. ",
+      "prerequisites": [
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": false,
+        "C": true
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Combat Trickery",
+      "set": "basic",
+      "cost": 5,
+      "summary": "Once per battle, roll a 1 on dMv against equal/higher rank targets.",
+      "description": "Once per battle, when the character is attacking targets of equal or higher rank, the character automatically rolls a 1 on their Marvel die, and that die cannot be affected by trouble. If the character is attacking multiple targets, all the targets must be of equal or higher rank. ",
+      "flavor": "The character is a tricky one! ",
+      "prerequisites": [
+        "Rank 2"
+      ],
+      "minRank": 3,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character makes an attack"
+    },
+    {
+      "name": "Counterstrike Technique",
+      "set": "martial arts",
+      "cost": 5,
+      "summary": "Reaction to deal half damage back while in Attack Stance.",
+      "description": "The character deals half the attacker's regular damage to the attacker. ",
+      "flavor": "The character counters an enemy's strike with one of their own. ",
+      "prerequisites": [
+        "Defense Stance",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "While Attack Stance is active, a close attack against the character does damage. "
+    },
+    {
+      "name": "Crushing Grip",
+      "set": "martial arts, super-strength",
+      "cost": 5,
+      "prerequisites": [
+        "Rank 2"
+      ],
+      "summary": "Melee vs Resilience attack on grabbed target; pins on Fantastic.",
+      "description": "The character makes a Melee attack against the grabbed target's Resilience defense. If it’s a success, the target takes regular damage. ",
+      "flavor": "The character seizes an enemy and squeezes hard. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "trigger": "The target is grabbed. ",
+      "fantasticEffect": "On a Fantastic success, the target takes double damage instead and is pinned. "
+    },
+    {
+      "name": "Defense Stance",
+      "set": "martial arts",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Close attacks against you have trouble until you are hit.",
+      "description": "Any close attacks made against the character have trouble until they are successfully attacked in this combat. ",
+      "flavor": "The character enters a fluid defensive stance, hands poised to parry and counterattack. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": false,
+        "C": true
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Disguise",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Alter appearance; TN to see through is Ego defense.",
+      "description": "The character instantly alters their appearance so that they appear to be someone else. The target number for anyone trying to see through the disguise is the character's Ego defense. If the character is impersonating someone known to the other person, that person has an edge. ",
+      "flavor": "The character appears to be someone else. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Do This All Day",
+      "set": "martial arts, shield bearer",
+      "cost": 5,
+      "variableCost": true,
+      "prerequisites": [
+        "Rank 2"
+      ],
+      "summary": "Heal 2 Health for every 1 Focus spent.",
+      "description": "The character heals 2 points of Health for every point of Focus they spend. ",
+      "flavor": "The character draws on their inner strength to heal themselves. ",
+      "adjustments": {
+        "heal": {
+          "health": "COST * 2"
+        }
+      },
+      "action": {
+        "S": true
+      },
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      }
+    },
+    {
+      "name": "Double Tap",
+      "set": "ranged weapons",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Ranged attack vs target within 2 spaces for regular damage.",
+      "description": "The character makes a ranged attack against an enemy within 2 spaces. If the attack is a success, the enemy takes regular damage. ",
+      "flavor": "To be twice as sure. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage and is bleeding. "
+    },
+    {
+      "name": "Elemental Blast",
+      "set": "elemental control",
+      "cost": 5,
+      "variableCost": true,
+      "prerequisites": [
+        "Elemental Burst",
+        "Rank 2"
+      ],
+      "summary": "Ranged attack with edge; spend Focus for damage bonus.",
+      "description": "The character makes a ranged attack with an edge at an enemy in line of sight. For this attack, add +1 to the character's Agility damage bonus for every 2 points of Focus they spend. On a success, an affected target takes that total damage. ",
+      "flavor": "The character blasts a foe with their element. ",
+      "customizable": {
+        "type": "elementSelect"
+      },
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "adjustments": {
+        "agilityDmgBonus": "COST / 2"
+      },
+      "range": 10,
+      "fantasticEffect": "On a Fantastic success, an affected target takes double that total damage and [ELEMENT_EFFECT]. "
+    },
+    {
+      "name": "Elemental Burst",
+      "set": "elemental control",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Ranged attack for regular elemental damage.",
+      "description": "The character makes a ranged attack against an enemy in line of sight. If the attack is a success, it inflicts regular damage. ",
+      "flavor": "The character fires a burst of their element.",
+      "customizable": {
+        "type": "elementSelect"
+      },
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "range": 10,
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage instead and [ELEMENT_EFFECT]."
+    },
+    {
+      "name": "Elemental Push",
+      "set": "elemental control",
+      "cost": 10,
+      "prerequisites": [
+        "Elemental Burst",
+        "Rank 3"
+      ],
+      "summary": "Ego check vs Agility defense to move target 1 space/rank.",
+      "description": "The character makes an Ego attack against the target's Agility defense. If the attack succeeds, the character can move the target in any direction, up to 1 space times the character's rank. ",
+      "flavor": "The character can move a target with their element. ",
+      "customizable": {
+        "type": "elementSelect"
+      },
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "ego"
+      ],
+      "fantasticEffect": "On a Fantastic success, the target also takes regular damage, is knocked prone and [ELEMENT_EFFECT]. "
+    },
+    {
+      "name": "Exploit",
+      "set": "melee weapons",
+      "cost": 5,
+      "prerequisites": [
+        "Vicious Attack",
+        "Rank 2"
+      ],
+      "summary": "Melee vs Resilience attack to ignore Health DR.",
+      "description": "The character makes a Melee attack against the target’s Resilience defense score. If the attack is a success, the damage it does ignores Health Damage Reduction. ",
+      "flavor": "The character finds a weak spot and exploits it. ",
+      "customizable": {
+        "type": "meleeSelect"
+      },
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "A Fantastic success on an attack using the character’s weapon that deals at least 1 point of damage",
+      "attackTypes": [
+        "melee"
+      ],
+      "fantasticEffect": "On a Fantastic success, the target suffers double damage and [MELEE_EFFECT]. "
+    },
+    {
+      "name": "Extended Reach 1",
+      "set": "plasticity",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "The character's reach quadruples. ",
+      "description": "The character's reach quadruples.",
+      "flavor": "The character's reach grows. ",
+      "adjustments": {
+        "reachMult": 4
+      },
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Extended Reach 2",
+      "set": "plasticity",
+      "cost": 0,
+      "prerequisites": [
+        "Extended Reach 1",
+        "Rank 2"
+      ],
+      "summary": "The character’s reach is 10 times normal.",
+      "description": "The character’s reach is 10 times normal.",
+      "flavor": "The character can reach a looong way. ",
+      "adjustments": {
+        "reachMult": 10
+      },
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Fast Attacks",
+      "set": "melee weapons",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Two Melee attacks for half damage each; full on Fantastic.",
+      "description": "The character splits their attack to make two close attacks against separate targets within reach (or they can focus a single attack on a single target). Make a single Melee check and compare it to the targets’ Melee defenses. On a success, the affected target takes half regular damage. ",
+      "flavor": "The character's weapons lash out! ",
+      "attackTypes": [
+        "melee"
+      ],
+      "customizable": {
+        "type": "meleeSelect"
+      },
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "fantasticEffect": "On a Fantastic success, the affected target takes full damage, [MELEE_EFFECT], and the character can make a bonus attack with this power against any target within reach, with the same effect."
+    },
+    {
+      "name": "Fast Strikes",
+      "set": "martial arts",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Two Melee attacks for half damage each; full on Fantastic.",
+      "description": "The character splits their attack to make two close attacks against separate targets within reach (or they can focus a single attack on a single target). Make a single Melee check and compare it to the targets’ Melee defenses. On a success, the affected target takes half regular damage. ",
+      "flavor": "The character unleashes a flurry of strikes. ",
+      "attackTypes": [
+        "melee"
+      ],
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "fantasticEffect": "On a Fantastic success, the affected target takes full damage. "
+    },
+    {
+      "name": "Flexible Bones 1",
+      "set": "plasticity",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Gain Health DR 1 and edge on contortion/escape checks.",
+      "description": "The character gains Health Damage Reduction 1. They also have an edge on Agility checks for contortion and escape. ",
+      "flavor": "The character's skeleton is rubbery. ",
+      "adjustments": {
+        "drHealthBonus": 1,
+        "featureNote": {
+          "agility": "Edge on Agility checks for contortion and escape"
+        }
+      },
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Flexible Bones 2",
+      "set": "plasticity",
+      "cost": 0,
+      "prerequisites": [
+        "Flexible Bones 1",
+        "Rank 2"
+      ],
+      "summary": "Gain Health DR 2 and double edge on contortion/escape checks.",
+      "description": "The character gains Health Damage Reduction 2. They also have a double edge on Agility checks for contortion and escape. ",
+      "flavor": "The character's skeleton is flexible and pliable. ",
+      "adjustments": {
+        "drHealthBonus": 2,
+        "featureNote": {
+          "agility": "Double Edge on Agility checks for contortion and escape"
+        }
+      },
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Grappling Technique",
+      "set": "martial arts",
+      "cost": 5,
+      "prerequisites": [
+        "Rank 2"
+      ],
+      "summary": "Melee attack for regular damage and grab; pin on Fantastic.",
+      "description": "The character makes a close attack. If the attack is a success, the enemy takes regular damage and is grabbed. ",
+      "flavor": "On a Fantastic success, the target takes double damage instead and is pinned too. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "melee"
+      ]
+    },
+    {
+      "name": "Grow 1",
+      "set": "resize",
+      "cost": 0,
+      "prerequisites": [],
+      "adjustments": {
+        "resizes": [
+          "Huge"
+        ]
+      },
+      "summary": "Grow up to Huge size and return at will.",
+      "description": "The character can grow up to huge size. They can return to their normal size at will. ",
+      "flavor": "The character sizes up! ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Grow 2",
+      "set": "resize",
+      "cost": 0,
+      "prerequisites": [
+        "Grow 1"
+      ],
+      "adjustments": {
+        "resizes": [
+          "Huge",
+          "Gigantic"
+        ]
+      },
+      "summary": "Grow up to Gigantic size and return at will.",
+      "description": "The character can grow up to gigantic size. They can return to their normal size at will. ",
+      "flavor": "The character becomes even bigger! ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Heightened Senses 1",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Double sense range and edge on Vigilance to perceive.",
+      "description": "The character can sense things roughly twice as far away as normal. They also have an edge on Vigilance checks to perceive things, and enemies have trouble on checks they make to sneak past the character. ",
+      "flavor": "The character has superior senses.",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      },
+      "adjustments": {
+        "featureNote": {
+          "vigilance": "Edge on Vigilance checks to perceive things"
+        }
+      }
+    },
+    {
+      "name": "Heightened Senses 2",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [
+        "Heightened Senses 1",
+        "Rank 2"
+      ],
+      "summary": "Quadruple sense range and double edge on Vigilance to perceive.",
+      "description": "The character can sense things roughly four times as far away as normal. Their senses are so sharp that they can use some of them to compensate for the loss of others (say, if blinded or deafened). They can even listen to the heartbeat of a person in the same room to see if they are lying — although this is as reliable as a traditional lie detector: far from 100% and not admissible in court. They also have a double edge on Vigilance checks to perceive things, and enemies have double trouble on checks they make to sneak past the character. ",
+      "flavor": "The character has senses as sharp as radar. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      },
+      "adjustments": {
+        "featureNote": {
+          "vigilance": "Double edge on Vigilance checks to perceive things"
+        }
+      }
+    },
+    {
+      "name": "Iconic Weapon",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [],
+      "repeatable": true,
+      "summary": "Own a unique weapon that grants specific powers.",
+      "description": "The character is known for owning and using a unique and powerful weapon, like Mjolnir (Thor's hammer) or Captain America's shield. The Narrator must approve the details of this weapon. This power can be taken more than once, but each time must be with a different weapon. ",
+      "flavor": "",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Immovable",
+      "set": "shield bearer, super-strength",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Reduce knockback by 1 space per point of Melee defense.",
+      "description": "For every point of Melee defense the character has, they can reduce knockback by 1 space. ",
+      "flavor": "Nobody pushes the character around. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is knocked back or knocked prone"
+    },
+    {
+      "name": "Inspiration",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Give an ally an edge on all checks for 1 round.",
+      "description": "The character inspires an ally in earshot. The ally gains an edge on all action checks until the start of the character's next turn. ",
+      "flavor": "The character's words inspire their allies. ",
+      "duration": {
+        "1": true,
+        "P": false,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Leg Sweep",
+      "set": "martial arts",
+      "cost": 5,
+      "prerequisites": [
+        "Fast Strikes",
+        "Rank 2"
+      ],
+      "summary": "Melee attack for regular damage and knock target prone.",
+      "description": "The character makes a close attack. If it succeeds, the enemy takes regular damage and is knocked prone. ",
+      "flavor": "The character knocks the enemy's legs from under them. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "fantasticEffect": "If it’s a Fantastic success, the enemy is stunned for one round too. "
+    },
+    {
+      "name": "Mighty 1",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "94",
+      "summary": "+1 Melee damage multiplier and checks; lift one size bigger.",
+      "prerequisites": [],
+      "minRank": 1,
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "meleeDmgMultBonus": 1,
+        "meleeNCBonus": 1,
+        "liftSizeStep": 1
+      }
+    },
+    {
+      "name": "Mighty 2",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "94",
+      "summary": "+2 Melee damage multiplier and checks; lift two sizes bigger.",
+      "prerequisites": [
+        "Mighty 1",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "meleeDmgMultBonus": 2,
+        "meleeNCBonus": 2,
+        "liftSizeStep": 2
+      }
+    },
+    {
+      "name": "Quick Toss",
+      "set": "super-strength",
+      "cost": 10,
+      "summary": "Reaction Logic check to throw a grabbed target at another target.",
+      "description": "The character throws the grabbed person at another target. The range is determined by the level of the character's Mighty power and the grabbed person's size. The character makes a ranged attack against the target. A failure inflicts regular damage on the thrown person, who falls prone within 1 space of the target. If the attack is a success, the target takes regular damage too. ",
+      "flavor": "The character tosses a person like a toy. ",
+      "prerequisites": [
+        "Crushing Grip",
+        "Mighty 1",
+        "Rank 3"
+      ],
+      "minRank": 3,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "trigger": "A person the character can pick up is grabbed. ",
+      "fantasticEffect": "On a Fantastic success, the target is knocked prone as well. "
+    },
+    {
+      "name": "Resize Object",
+      "set": "resize",
+      "cost": 10,
+      "summary": "Grow or shrink a touched object based on your own powers.",
+      "description": "The character can make an object within reach grow or shrink. The character can resize the object as much as their own Grow or Shrink power would allow them to. ",
+      "flavor": "The character can change the size of an object within reach. ",
+      "prerequisites": [
+        "Grow 2 / Shrink 2",
+        "Rank 3"
+      ],
+      "minRank": 3,
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Reverse Punch",
+      "set": "plasticity",
+      "cost": 5,
+      "summary": "Melee attack with edge that can strike from behind.",
+      "description": "The character makes a close attack with an edge on an enemy. If the attack is a success, the enemy takes regular damage. ",
+      "flavor": "The charactercan reach pastan enemy and punch them from behind. ",
+      "prerequisites": [
+        "Flexible Bones 1",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage and is stunned for one round. "
+    },
+    {
+      "name": "Shield 1",
+      "set": "shield bearer",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Gain permanent Health Damage Reduction 1 via concentration.",
+      "description": "The character gains Health Damage Reduction 1. ",
+      "flavor": "The character wields a personal shield. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": false,
+        "C": true
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "adjustments": {
+        "drHealthBonus": 1
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Shield Bash",
+      "set": "shield bearer",
+      "cost": 0,
+      "summary": "Melee attack for regular damage; knocks prone on Fantastic.",
+      "description": "The character makes a close attack on an enemy within their reach. If the attack is a success, the enemy takes regular damage. ",
+      "flavor": "The character bashes a foe with their shield. ",
+      "prerequisites": [],
+      "minRank": 0,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage and is knocked prone. "
+    },
+    {
+      "name": "Shrink 1",
+      "set": "resize",
+      "cost": 0,
+      "prerequisites": [],
+      "adjustments": {
+        "resizes": [
+          "Little"
+        ]
+      },
+      "summary": "Shrink down to Little size and return at will.",
+      "description": "The character can shrink down to little size. They can return to their normal size at will. ",
+      "flavor": "The character thinks small. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Shrink 2",
+      "set": "resize",
+      "cost": 0,
+      "prerequisites": [
+        "Shrink 1"
+      ],
+      "adjustments": {
+        "resizes": [
+          "Little",
+          "Tiny"
+        ]
+      },
+      "summary": "Shrink down to Tiny size and return at will.",
+      "description": "The character can shrink down to tiny size. They can return to their normal size at will. ",
+      "flavor": "The character becomes even smaller! ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Shrink 3",
+      "set": "resize",
+      "cost": 0,
+      "prerequisites": [
+        "Shrink 2"
+      ],
+      "adjustments": {
+        "resizes": [
+          "Little",
+          "Tiny",
+          "Miniature"
+        ]
+      },
+      "summary": "Shrink down to Miniature size and return at will.",
+      "description": "The character can shrink down to miniature size. They can return to their normal size at will. ",
+      "flavor": "The character is smaller than an action figure. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Shrink 4",
+      "set": "resize",
+      "cost": 0,
+      "prerequisites": [
+        "Shrink 3"
+      ],
+      "adjustments": {
+        "resizes": [
+          "Little",
+          "Tiny",
+          "Miniature",
+          "Microscopic"
+        ]
+      },
+      "summary": "Shrink down to Microscopic size and return at will.",
+      "description": "The character can shrink down to microscopic size. They can return to their normal size at will. ",
+      "flavor": "The character is so small that they're hard to see. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Shrinking Dodge",
+      "set": "resize",
+      "cost": 5,
+      "prerequisites": [
+        "Shrink 1",
+        "Rank 2"
+      ],
+      "summary": "Reaction to give an attack against you trouble by shrinking.",
+      "description": "The attacker has trouble on the attack. ",
+      "flavor": "The character shrinks to avoid an attack. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "The character is attacked"
+    },
+    {
+      "name": "Slip Free",
+      "set": "plasticity",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Reaction to automatically escape from being grabbed or pinned.",
+      "description": "The character is not grabbed or pinned. ",
+      "flavor": "The character is impossible to restrain. ",
+      "duration": {
+        "R": true
+      },
+      "action": {
+        "S": true
+      },
+      "trigger": "The character is grabbed or pinned."
+    },
+    {
+      "name": "Slow-Motion Dodge",
+      "set": "basic",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Reaction to give an attack against your Agility defense trouble.",
+      "description": "The enemy has trouble on the attack. ",
+      "flavor": "Time seems to slow down for the character, making it easy to dodge enemy attacks. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "trigger": "An enemy makes an attack against the character's Agility defense"
+    },
+    {
+      "name": "Smash",
+      "set": "super-strength",
+      "cost": 5,
+      "variableCost": true,
+      "prerequisites": [
+        "Clobber",
+        "Rank 2"
+      ],
+      "summary": "Melee attack with edge; spend Focus for damage bonus.",
+      "description": "The character makes a close attack with an edge. For this attack, add +1 to the character’s Melee damage bonus for every 2 points of Focus they spend. On a success, an affected target takes that total damage. ",
+      "flavor": "SMASH! ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "adjustments": {
+        "agilityDmgBonus": "COST / 2"
+      },
+      "fantasticEffect": "On a Fantastic success, an affected target takes double that total damage and is stunned for one round. "
+    },
+    {
+      "name": "Snap Shooting",
+      "set": "ranged weapons",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Two ranged Agility attacks for half damage each.",
+      "description": "The character splits their attack to make two ranged attacks against separate targets (or they can focus a single attack on a single target). Make a single Agility check and compare it to the targets’ Agility defenses. On a success, an affected target takes half regular damage. ",
+      "flavor": "The character shoots from the hip with deadly speed. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "fantasticEffect": "On a Fantastic success, an affected target takes full damage and is bleeding. "
+    },
+    {
+      "name": "Sniping",
+      "set": "ranged weapons",
+      "cost": 5,
+      "prerequisites": [
+        "Rank 2"
+      ],
+      "summary": "Ranged attack (min 20 spaces) using both Standard and Movement actions.",
+      "description": "The character makes a ranged attack against an enemy at least 20 spaces away. If the attack is a success, the enemy takes regular damage. Take both Standard and Movement action",
+      "flavor": "The character takes aim and shoots with deadly accuracy. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "fantasticEffect": "On a Fantastic success, the enemy takes triple damage instead. "
+    },
+    {
+      "name": "Spin & Throw",
+      "set": "martial arts",
+      "cost": 5,
+      "prerequisites": [
+        "Grappling Technique",
+        "Rank 2"
+      ],
+      "summary": "Reaction to damage, prone, and move a grabbed target.",
+      "description": "The character makes a Melee attack against the grabbed foe. If the attack is a success, the enemy takes regular damage and is knocked prone. The character can move the enemy to any open space within reach. ",
+      "flavor": "",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "attackTypes": [
+        "melee"
+      ],
+      "trigger": "An enemy the character can pick up is grabbed. ",
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage and is knocked prone, pinned and stunned for one round. "
+    },
+    {
+      "name": "Stilt Steps",
+      "set": "plasticity",
+      "cost": 0,
+      "prerequisites": [
+        "Extended Reach 1",
+        "Rank 2"
+      ],
+      "summary": "Double Run and Climb Speeds via stretching legs.",
+      "description": "The character's Run Speed doubles, as does their Climb Speed. ",
+      "flavor": "The character can stretch their legs like extendable stilts. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      },
+      "adjustments": {
+        "speed": {
+          "run": "2 * RUN_SPEED"
+        }
+      }
+    },
+    {
+      "name": "Stopping Power",
+      "set": "ranged weapons",
+      "cost": 5,
+      "prerequisites": [
+        "Double Tap",
+        "Rank 2"
+      ],
+      "summary": "Ranged Agility attack that allows a follow-up regular attack.",
+      "description": "The character makes a ranged attack on an enemy. If the attack is a success, the enemy takes regular damage. ",
+      "flavor": "The character keeps shooting at the target. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage, and the character can make another regular ranged attack on the same target. "
+    },
+    {
+      "name": "Sturdy 1",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "100",
+      "summary": "Health Damage Reduction 1.",
+      "description": "The character gains Health Damage Reduction 1. ",
+      "flavor": "The character has protection from physical damage. ",
+      "prerequisites": [],
+      "minRank": 1,
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "drHealthBonus": 1
+      }
+    },
+    {
+      "name": "Sturdy 2",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "100",
+      "summary": "Health Damage Reduction 2.",
+      "description": "The character gains Health Damage Reduction 2. ",
+      "flavor": "The character is protected as if by steel. ",
+      "prerequisites": [
+        "Sturdy 1",
+        "Rank 2"
+      ],
+      "minRank": 2,
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "drHealthBonus": 2
+      }
+    },
+    {
+      "name": "Sturdy 3",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "100",
+      "summary": "Health Damage Reduction 3.",
+      "description": "The character gains Health Damage Reduction 3. ",
+      "flavor": "The character is protected like a tank. ",
+      "prerequisites": [
+        "Sturdy 2",
+        "Rank 3"
+      ],
+      "duration": {
+        "P": true
+      },
+      "action": {},
+      "adjustments": {
+        "drHealthBonus": 3
+      }
+    },
+    {
+      "name": "Suppressive Fire",
+      "set": "ranged weapons",
+      "cost": 0,
+      "prerequisites": [
+        "Double Tap",
+        "Rank 2"
+      ],
+      "summary": "Agility vs Vigilance attack to deal Focus damage.",
+      "description": "The character makes an Agility attack against a target's Vigilance defense. If the attack is a success, apply Health Damage Reduction normally. Any damage taken is then applied to the target’s Focus instead. ",
+      "flavor": "The character forces their foes to keep their heads down. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "fantasticEffect": "If it’s a Fantastic success, the damage is doubled, and if the target takes any Focus damage, they are stunned for one round. "
+    },
+    {
+      "name": "Untouchable Position",
+      "set": "martial arts",
+      "cost": 0,
+      "prerequisites": [
+        "Counterstrike Technique",
+        "Rank 3"
+      ],
+      "summary": "Reaction to give subsequent close attacks trouble for 1 round.",
+      "description": "If the character is attacked, all other close attacks against them have trouble until the start of their next turn. ",
+      "flavor": "The character's enemies struggle to gang up on them. ",
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": false
+      },
+      "adjustments": {
+        "featureNote": {
+          "melee": "If you are attacked, all other close attacks against you have trouble until the start of you next turn. "
+        }
+      }
+    },
+    {
+      "name": "Vicious Attack",
+      "set": "melee weapons",
+      "cost": 0,
+      "prerequisites": [],
+      "summary": "Melee attack for regular damage; double damage and effect on Fantastic.",
+      "description": "The character makes a close attack. If the attack is a success, the enemy takes regular damage. ",
+      "flavor": "The character strikes a felling blow. ",
+      "attackTypes": [
+        "melee"
+      ],
+      "customizable": {
+        "type": "meleeSelect"
+      },
+      "fantasticEffect": "On a Fantastic success, the enemy takes double damage and [MELEE_EFFECT].",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      }
+    },
+    {
+      "name": "Weapons Blazing",
+      "set": "ranged weapons",
+      "cost": 0,
+      "prerequisites": [
+        "Snap Shooting"
+      ],
+      "summary": "Two ranged Agility attacks for half damage each.",
+      "description": "The character splits their attack to make two ranged attacks against separate targets (or they can focus a single attack on a single target). Make a single Agility check and compare it to the targets’ Agility defenses. On a success, the affected target takes half regular damage. ",
+      "flavor": "The character blazes away at two foes at once. ",
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": false,
+        "R": false
+      },
+      "attackTypes": [
+        "agility"
+      ],
+      "fantasticEffect": "On a Fantastic success, the affected target takes full damage, and the character can make a bonus attack with this power against any available target, with the same effect. "
+    },
+    {
+      "name": "Wisecracker",
+      "set": "basic",
+      "cost": 0,
+      "pageRef": "",
+      "summary": "Reaction Ego attack to deal regular Focus damage.",
+      "description": "The character cracks a joke at the enemy's expense. Make an Ego attack. On a success, it does regular Focus damage. ",
+      "prerequisites": [],
+      "minRank": 0,
+      "duration": {
+        "1": false,
+        "P": false,
+        "I": true,
+        "C": false
+      },
+      "action": {
+        "S": false,
+        "M": false,
+        "R": true
+      },
+      "attackTypes": [
+        "ego"
+      ],
+      "fantasticEffect": "On a Fantastic success, the damage is doubled, and the target is stunned for one round. ",
+      "trigger": "The character succeeds in an attack on an enemy in earshot, or an enemy in earshot fails an attack on them. "
+    },
+    {
+      "name": "Test Power — Everything",
+      "set": "Cosmic",
+      "cost": 0,
+      "pageRef": "∞",
+      "description": "Full description shown in tooltips and combat detail panel.",
+      "summary": "Short version shown in the power row.",
+      "flavor": "This is flavor text for the power.",
+      "minRank": 2,
+      "prerequisites": [
+        "Mighty 1",
+        "Rank 2"
+      ],
+      "duration": {
+        "1": false,
+        "P": true,
+        "I": false,
+        "C": false
+      },
+      "action": {
+        "S": true,
+        "M": true,
+        "R": true
+      },
+      "adjustments": {
+        "healthMaxBonus": 60,
+        "focusMaxBonus": 30,
+        "meleeBonus": 2,
+        "agilityBonus": 2,
+        "resilienceBonus": 2,
+        "vigilanceBonus": 2,
+        "egoBonus": 2,
+        "logicBonus": 2,
+        "meleeNCBonus": 2,
+        "agilityNCBonus": 2,
+        "resilienceNCBonus": 2,
+        "vigilanceNCBonus": 2,
+        "egoNCBonus": 2,
+        "logicNCBonus": 2,
+        "drHealthBonus": 3,
+        "drFocusBonus": 3,
+        "meleeDmgMultBonus": 1,
+        "agilityDmgMultBonus": 1,
+        "egoDmgMultBonus": 1,
+        "logicDmgMultBonus": 1,
+        "meleeDmgBonus": 1,
+        "agilityDmgBonus": 1,
+        "egoDmgBonus": 1,
+        "logicDmgBonus": 1,
+        "featureNote": {
+          "karma": "Note shown under the Karma tracker",
+          "speed": "Note shown above the speed rows",
+          "initiative": "Note shown above the initiative value",
+          "standard": "Note shown in the Standard combat column",
+          "movement": "Note shown in the Movement combat column",
+          "reaction": "Note shown in the Reactions combat column",
+          "health": "Takes double damage from fire sources.",
+          "focus": "Regains 10 Focus at the start of each round.",
+          "drHealth": "DR applies to all damage types.",
+          "drFocus": "Focus DR only applies vs. psychic attacks.",
+          "melee": "Cannot use Melee attacks while Grabbed.",
+          "agility": "Agility checks are made at disadvantage underground.",
+          "resilience": "Immune to poison and disease.",
+          "vigilance": "Always acts in surprise rounds.",
+          "ego": "Ego checks made to resist mind control get +5.",
+          "logic": "Logic checks for tech have +3 from built-in scanner."
+        }
+      }
+    }
+  ],
+  "iconicItemRestriction": [
+    {
+      "name": "Custom Item Description",
+      "description": "Adds a custom descriptive text to the item's main entry.",
+      "customizable": {
+        "type": "freeText",
+        "placeholder": "Enter custom item description text..."
+      }
+    },
+    {
+      "name": "Custom Weapon Description",
+      "description": "Adds a custom descriptive text to the item's weapon combat action. Requires the Weapon power.",
+      "customizable": {
+        "type": "freeText",
+        "placeholder": "Enter custom weapon action text..."
+      }
+    }
+  ],
+  "basicItems": [
+    {
+      "name": "Bow",
+      "additionalDetails": "The user can choose between blunt and sharp damage by using different arrows. They must declare which type they are using when they make the attack.",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 15,
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Club",
+      "weapon": true,
+      "melee": true,
+      "weaponDetails": {
+        "range": "Reach",
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Flash-Bang Grenade",
+      "additionalDetails": "Once you figure out where the grenade lands, compare the attack roll against the Vigilance defense of any character within 2 spaces of it. Those who are affected are blinded and stunned for one round.",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 10,
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Frag Grenade",
+      "additionalDetails": "This weapon affects all characters within 2 spaces of where it lands and to which the grenade (not its thrower) would have a line of sight past any intervening obstacles. Pick An ally has trouble on an action check. If it succeeds, the grenade lands in the desired space. If the check fails, the grenade still winds up somewhere. Roll 1d6 to see how many spaces away from its intended target it lands. It’s up to the Narrator which direction it goes. Once you figure out where the grenade lands, compare the result of the check against the Agility defense of each character it could affect. Unlike with other, more precise weapons, a grenade uses its own damage multiplier (x2) instead of that of the attacker. On a Fantastic success, it does double that damage (x4) to the character in the space where it lands, and regular damage to all other affected targets.",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 10,
+        "damMultBonus": "x2"
+      }
+    },
+    {
+      "name": "Knife",
+      "weapon": true,
+      "melee": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": "Reach/5",
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Pistol",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 10,
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Sniper Rifle",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 40,
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Shotgun",
+      "description": "This weapon can attack up to two targets in adjacent spaces to which the attacker can draw a line of sight. Make a single attack roll and compare it to the Agility defense scores of both targets. Split the damage from that roll equally.",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 6,
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Submachine Gun",
+      "description": "This weapon can attack up to three targets in adjacent spaces to which the attacker can draw a line of sight. Make a single attack roll and compare it to the Agility defense scores of the targets. Split the damage from that roll equally. Attacks with this weapon against targets 5 spaces away or fewer have trouble.",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 10,
+        "damMultBonus": 1
+      }
+    },
+    {
+      "name": "Smoke Grenade",
+      "weapon": true,
+      "ranged": true,
+      "weaponDetails": {
+        "range": 10,
+        "damMultBonus": "x2"
+      }
+    },
+    {
+      "name": "Sword",
+      "weapon": true,
+      "melee": true,
+      "weaponDetails": {
+        "range": "Reach",
+        "damMultBonus": 2
+      }
+    }
+  ]
+}

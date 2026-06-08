@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MMRPG Library Editor</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --red: #c91e24;
+      --red-bright: #ff3a42;
+      --red-dim: #7a1216;
+      --gold: #d4a61a;
+      --gold-dim: #8a6a10;
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --bg4: #1e1e1e;
+      --border: #2a2a2a;
+      --border2: #383838;
+      --text: #e8e8e8;
+      --text2: #a8a8a8;
+      --text3: #666;
+      --green: #1fa054;
+      --blue: #1a6dc9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      min-height: 100vh;
+    }
+
+    /* ── Header ─────────────────────────────────────────────────────── */
+    .hdr {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg2);
+      border-bottom: 2px solid var(--red);
+      padding: 0 16px;
+      display: flex; align-items: center; gap: 12px;
+      height: 52px;
+    }
+    .hdr-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--red-bright); }
+    .hdr-sub { color: var(--text3); font-size: 11px; margin-top: -2px; }
+    .hdr-spacer { flex: 1; }
+    .hdr-counts { font-size: 10px; color: var(--text3); font-family: 'DM Mono', monospace; margin-right: 8px; }
+
+    /* ── Buttons ─────────────────────────────────────────────────────── */
+    .btn {
+      border: 1px solid var(--border2);
+      background: var(--bg3);
+      color: var(--text);
+      padding: 5px 12px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      transition: border-color .15s, background .15s;
+      white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--red); background: var(--bg4); }
+    .btn-red { background: var(--red); border-color: var(--red); color: #fff; }
+    .btn-red:hover { background: var(--red-bright); border-color: var(--red-bright); }
+    .btn-gold { background: var(--gold-dim); border-color: var(--gold); color: #fff; }
+    .btn-gold:hover { background: var(--gold); }
+    .btn-ghost { background: transparent; border-color: var(--border); color: var(--text2); }
+    .btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+    .btn-icon { padding: 4px 8px; }
+    .btn-danger { border-color: var(--red-dim); color: #ff6668; background: transparent; }
+    .btn-danger:hover { background: rgba(201,30,36,.15); border-color: var(--red); }
+    .btn-green { background: var(--green); border-color: var(--green); color: #fff; }
+    .btn-green:hover { background: #27c96a; }
+
+    /* ── Layout ─────────────────────────────────────────────────────── */
+    .layout { display: flex; height: calc(100vh - 52px); }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 200px; min-width: 200px;
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      overflow-y: auto;
+    }
+    .lib-name-wrap { padding: 12px; border-bottom: 1px solid var(--border); }
+    .lib-name-wrap label { font-size: 10px; color: var(--text3); letter-spacing: .8px; text-transform: uppercase; display: block; margin-bottom: 4px; }
+    .lib-name-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+    }
+    .lib-name-input:focus { outline: none; border-color: var(--red); }
+
+    .nav-section { padding: 8px 0; }
+    .nav-label { font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; }
+    .nav-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 12px;
+      cursor: pointer;
+      color: var(--text2);
+      font-size: 12px;
+      transition: background .12s, color .12s;
+      border-left: 2px solid transparent;
+    }
+    .nav-item:hover { background: var(--bg3); color: var(--text); }
+    .nav-item.active { background: var(--bg3); color: var(--red-bright); border-left-color: var(--red); }
+    .nav-badge {
+      font-size: 10px; font-family: 'DM Mono', monospace;
+      background: var(--bg4); border: 1px solid var(--border);
+      padding: 1px 5px; border-radius: 2px; color: var(--text3);
+    }
+    .nav-item.active .nav-badge { border-color: var(--red-dim); color: var(--red); }
+
+    /* ── Main content ─────────────────────────────────────────────────── */
+    .content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+    .toolbar {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg2);
+      flex-wrap: wrap;
+    }
+    .search-wrap { position: relative; flex: 1; max-width: 300px; }
+    .search-wrap input {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: 6px 8px 6px 30px;
+      font-family: 'DM Sans', sans-serif; font-size: 12px;
+    }
+    .search-wrap input:focus { outline: none; border-color: var(--red); }
+    .search-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 13px; pointer-events: none; }
+    .filter-select {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text2); padding: 6px 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer;
+    }
+    .filter-select:focus { outline: none; border-color: var(--red); }
+
+    .list-area { flex: 1; overflow-y: auto; padding: 12px 16px; }
+
+    /* ── Item cards ─────────────────────────────────────────────────── */
+    .item-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      margin-bottom: 6px;
+      transition: border-color .15s;
+    }
+    .item-card:hover { border-color: var(--border2); }
+    .item-card.expanded { border-color: var(--red-dim); }
+
+    .item-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .item-chevron { color: var(--text3); font-size: 10px; transition: transform .2s; width: 12px; text-align: center; }
+    .item-card.expanded .item-chevron { transform: rotate(90deg); color: var(--red); }
+    .item-name { font-weight: 600; font-size: 13px; flex: 1; }
+    .item-meta { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; }
+    .item-tags-row { display: flex; gap: 4px; flex-wrap: wrap; }
+    .tag-pill {
+      font-size: 10px; padding: 1px 6px; border: 1px solid var(--border2);
+      color: var(--text3); background: var(--bg3); font-family: 'DM Mono', monospace;
+    }
+    .tag-pill.red { border-color: var(--red-dim); color: var(--red); }
+    .tag-pill.gold { border-color: var(--gold-dim); color: var(--gold); }
+    .tag-pill.green { border-color: #1a5a35; color: #27c96a; }
+
+    .item-body { padding: 0 12px 12px; border-top: 1px solid var(--border); display: none; }
+    .item-card.expanded .item-body { display: block; }
+
+    /* ── Form fields ─────────────────────────────────────────────────── */
+    .fields-grid { display: grid; gap: 10px; margin-top: 10px; }
+    .fields-grid.col2 { grid-template-columns: 1fr 1fr; }
+    .fields-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+    .fields-grid.col4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+    .field { display: flex; flex-direction: column; gap: 3px; }
+    .field-label {
+      font-size: 10px; color: var(--text3); letter-spacing: .8px;
+      text-transform: uppercase; font-family: 'DM Mono', monospace;
+    }
+    .fi, .ta, .sel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      width: 100%;
+      transition: border-color .15s;
+    }
+    .fi:focus, .ta:focus, .sel:focus { outline: none; border-color: var(--red); }
+    .ta { resize: vertical; min-height: 60px; line-height: 1.5; }
+    .sel { cursor: pointer; }
+
+    /* ── Checkboxes ─────────────────────────────────────────────────── */
+    .check-group { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+    .check-item {
+      display: flex; align-items: center; gap: 4px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: var(--bg);
+      font-size: 11px;
+      color: var(--text2);
+      user-select: none;
+      transition: border-color .12s, color .12s, background .12s;
+    }
+    .check-item:hover { border-color: var(--border2); color: var(--text); }
+    .check-item.checked { border-color: var(--red-dim); color: var(--red-bright); background: rgba(201,30,36,.08); }
+    .check-item input { display: none; }
+
+    /* ── Section header ─────────────────────────────────────────────── */
+    .section-divider {
+      font-size: 10px; color: var(--text3); letter-spacing: 1.2px;
+      text-transform: uppercase; font-family: 'DM Mono', monospace;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px; margin: 12px 0 8px;
+    }
+
+    /* ── JSON editor fallback ─────────────────────────────────────────── */
+    .json-editor { font-family: 'DM Mono', monospace; font-size: 11px; }
+
+    /* ── Empty state ─────────────────────────────────────────────────── */
+    .empty {
+      text-align: center; padding: 60px 20px;
+      color: var(--text3);
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: .4; }
+    .empty p { font-size: 13px; }
+
+    /* ── Scrollbar ─────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); }
+    ::-webkit-scrollbar-thumb:hover { background: #444; }
+  </style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-title">MMRPG Library Editor</div>
+    <div class="hdr-sub">Build importable libraries for the character sheet</div>
+  </div>
+  <div class="hdr-spacer"></div>
+  <div class="hdr-counts" id="headerCounts"></div>
+  <button class="btn btn-ghost" id="importBtn">▲ Import .json</button>
+  <button class="btn btn-red" id="exportBtn">▼ Export .json</button>
+  <input id="importFile" type="file" accept=".json" style="display:none">
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="lib-name-wrap">
+      <label>Library Name</label>
+      <input class="lib-name-input" id="libName" value="MMRPG Complete Library" placeholder="Library name...">
+    </div>
+    <div class="nav-section" id="nav"></div>
+  </div>
+
+  <div class="content">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" placeholder="Search by name, set, summary...">
+      </div>
+      <select class="filter-select" id="setFilter" style="display:none"></select>
+      <div style="flex:1"></div>
+      <button class="btn btn-red" id="addBtn">+ Add Entry</button>
+    </div>
+    <div class="list-area" id="listArea"></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────
+// DATA MODEL
+// ─────────────────────────────────────────────────────────────────────────
+
+const SECTIONS = [
+  { key: 'origins',              label: 'Origins',           singular: 'Origin' },
+  { key: 'occupations',          label: 'Occupations',       singular: 'Occupation' },
+  { key: 'traits',               label: 'Traits',            singular: 'Trait' },
+  { key: 'tags',                 label: 'Tags',              singular: 'Tag' },
+  { key: 'powers',               label: 'Powers',            singular: 'Power' },
+  { key: 'iconicItemPowers',     label: 'Item Powers',       singular: 'Item Power' },
+  { key: 'iconicItemRestriction',label: 'Item Restrictions', singular: 'Restriction' },
+  { key: 'iconicItems',          label: 'Iconic Items',      singular: 'Iconic Item' },
+  { key: 'battleSuits',          label: 'Battle Suits',      singular: 'Battle Suit' },
+  { key: 'basicItems',           label: 'Basic Items',       singular: 'Basic Item' },
+  { key: 'narrativeItems',       label: 'Narrative Items',   singular: 'Narrative Item' },
+];
+
+let lib = {
+  name: 'MMRPG Complete Library',
+  origins: [], occupations: [], traits: [], tags: [], powers: [],
+  iconicItemPowers: [], iconicItemRestriction: [],
+  iconicItems: [], battleSuits: [], basicItems: [], narrativeItems: []
+};
+let activeTab = 'powers';
+let expandedIds = new Set();
+let searchVal = '';
+let setFilter = '';
+
+// ─────────────────────────────────────────────────────────────────────────
+// DEFAULT ITEM FACTORIES
+// ─────────────────────────────────────────────────────────────────────────
+
+function defaultItem(section) {
+  const base = { _id: uid() };
+  switch (section) {
+    case 'origins':
+    case 'occupations':
+      return { ...base, name: '', grantedTraits: [], grantedTags: [], requiredPowers: [], description: '', adjustments: {} };
+    case 'traits':
+      return { ...base, name: '', description: '', repeatable: false, customizable: false, adjustments: {} };
+    case 'tags':
+      return { ...base, name: '', description: '', repeatable: false, customizable: false, prerequisites: [] };
+    case 'powers':
+      return { ...base, name: '', set: '', cost: 0, variableCost: false, pageRef: '', summary: '', description: '', flavor: '', prerequisites: [], minRank: 1, duration: {}, action: {}, attackTypes: [], checkTypes: [], range: 0, customizable: false, repeatable: false, trigger: '', fantasticEffect: '', adjustments: {} };
+    case 'iconicItemPowers':
+      return { ...base, name: '', description: '', flavor: '', attackTypes: [], grantedTag: '', grantedTraits: [], customizable: false, adjustments: {} };
+    case 'iconicItemRestriction':
+      return { ...base, name: '', restrictionType: '', grantedTags: [] };
+    case 'iconicItems':
+    case 'battleSuits':
+      return { ...base, name: '', origin: '', powers: [], restrictions: [], description: '', note: '', tags: [] };
+    case 'basicItems':
+    case 'narrativeItems':
+      return { ...base, name: '', description: '', adjustments: {} };
+    default:
+      return { ...base, name: '' };
+  }
+}
+
+function uid() { return '_' + Math.random().toString(36).slice(2, 9); }
+
+// Give each existing item a stable _id if missing
+function ensureIds(arr) {
+  return arr.map(x => x._id ? x : { ...x, _id: uid() });
+}
+
+function loadLib(raw) {
+  SECTIONS.forEach(s => {
+    lib[s.key] = ensureIds(raw[s.key] || []);
+  });
+  lib.name = raw.name || 'MMRPG Library';
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────────────────────────────────
+
+function getList() { return lib[activeTab] || []; }
+
+function getFilteredList() {
+  let items = getList();
+  const q = searchVal.trim().toLowerCase();
+  if (q) {
+    items = items.filter(item => {
+      const haystack = [
+        item.name, item.set, item.summary, item.description,
+        (item.prerequisites || []).join(' '),
+        (item.grantedTraits || []).join(' '),
+        (item.grantedTags || []).join(' '),
+        item.flavor, item.pageRef
+      ].filter(Boolean).join(' ').toLowerCase();
+      return haystack.includes(q);
+    });
+  }
+  if (setFilter && activeTab === 'powers') {
+    items = items.filter(i => (i.set || '').toLowerCase() === setFilter.toLowerCase());
+  }
+  return items;
+}
+
+function renderNav() {
+  const nav = document.getElementById('nav');
+  nav.innerHTML = SECTIONS.map(s => {
+    const count = (lib[s.key] || []).length;
+    return `<div class="nav-item${activeTab === s.key ? ' active' : ''}" data-key="${s.key}">
+      <span>${s.label}</span>
+      <span class="nav-badge">${count}</span>
+    </div>`;
+  }).join('');
+  nav.querySelectorAll('.nav-item').forEach(el => {
+    el.addEventListener('click', () => {
+      activeTab = el.dataset.key;
+      searchVal = '';
+      setFilter = '';
+      document.getElementById('searchInput').value = '';
+      render();
+    });
+  });
+}
+
+function renderSetFilter() {
+  const sel = document.getElementById('setFilter');
+  if (activeTab !== 'powers') { sel.style.display = 'none'; return; }
+  const sets = [...new Set(getList().map(p => p.set || '').filter(Boolean))].sort();
+  sel.innerHTML = `<option value="">All Sets</option>` + sets.map(s => `<option value="${s}"${setFilter===s?' selected':''}>${s}</option>`).join('');
+  sel.style.display = '';
+}
+
+function renderHeaderCounts() {
+  const total = SECTIONS.reduce((a, s) => a + (lib[s.key]||[]).length, 0);
+  document.getElementById('headerCounts').textContent = `${total} total entries`;
+}
+
+function render() {
+  renderNav();
+  renderSetFilter();
+  renderHeaderCounts();
+  renderList();
+  // Update add button label
+  const sec = SECTIONS.find(s => s.key === activeTab);
+  document.getElementById('addBtn').textContent = `+ Add ${sec ? sec.singular : 'Entry'}`;
+}
+
+function renderList() {
+  const area = document.getElementById('listArea');
+  const items = getFilteredList();
+
+  if (items.length === 0) {
+    area.innerHTML = `<div class="empty"><div class="empty-icon">📦</div><p>${searchVal ? 'No results for "' + esc(searchVal) + '"' : 'No entries yet. Click + Add to get started.'}</p></div>`;
+    return;
+  }
+
+  area.innerHTML = items.map(item => renderCard(item)).join('');
+
+  // Bind events
+  area.querySelectorAll('.item-header').forEach(hdr => {
+    hdr.addEventListener('click', () => {
+      const id = hdr.dataset.id;
+      if (expandedIds.has(id)) expandedIds.delete(id);
+      else expandedIds.add(id);
+      renderList();
+    });
+  });
+
+  area.querySelectorAll('.del-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      if (confirm('Remove this entry?')) {
+        lib[activeTab] = lib[activeTab].filter(x => x._id !== id);
+        expandedIds.delete(id);
+        render();
+      }
+    });
+  });
+
+  area.querySelectorAll('.dup-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      const orig = lib[activeTab].find(x => x._id === id);
+      if (orig) {
+        const copy = { ...JSON.parse(JSON.stringify(orig)), _id: uid(), name: orig.name + ' (copy)' };
+        const idx = lib[activeTab].findIndex(x => x._id === id);
+        lib[activeTab].splice(idx + 1, 0, copy);
+        expandedIds.add(copy._id);
+        render();
+      }
+    });
+  });
+
+  // Field change binding
+  area.querySelectorAll('[data-field]').forEach(el => {
+    el.addEventListener('change', () => commitField(el));
+  });
+  area.querySelectorAll('[data-field]').forEach(el => {
+    if (el.tagName === 'TEXTAREA') el.addEventListener('input', () => commitField(el));
+  });
+  area.querySelectorAll('.check-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      const field = el.dataset.field;
+      const key = el.dataset.key;
+      const item = lib[activeTab].find(x => x._id === id);
+      if (!item) return;
+      if (field === 'duration' || field === 'action') {
+        if (!item[field]) item[field] = {};
+        item[field][key] = !item[field][key];
+      } else if (field === 'attackTypes' || field === 'checkTypes') {
+        if (!item[field]) item[field] = [];
+        const has = item[field].includes(key);
+        item[field] = has ? item[field].filter(x => x !== key) : [...item[field], key];
+      } else {
+        item[field] = !item[field];
+      }
+      el.classList.toggle('checked');
+      renderNav(); renderHeaderCounts();
+    });
+  });
+}
+
+function commitField(el) {
+  const id = el.dataset.id;
+  const field = el.dataset.field;
+  const type = el.dataset.type;
+  const item = lib[activeTab].find(x => x._id === id);
+  if (!item) return;
+  let val = el.value;
+  if (type === 'list') {
+    val = val.split(/[\n,]/).map(x => x.trim()).filter(Boolean);
+  } else if (type === 'number') {
+    val = parseInt(val, 10) || 0;
+  } else if (type === 'json') {
+    try { val = JSON.parse(val); } catch { return; }
+  } else if (type === 'bool') {
+    val = el.checked;
+  }
+  item[field] = val;
+  renderNav(); renderHeaderCounts();
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// CARD BUILDERS
+// ─────────────────────────────────────────────────────────────────────────
+
+function renderCard(item) {
+  const expanded = expandedIds.has(item._id);
+  const metaStr = buildMetaStr(item);
+  const tagsHtml = buildTagPills(item);
+  return `
+  <div class="item-card${expanded ? ' expanded' : ''}" data-id="${item._id}">
+    <div class="item-header" data-id="${item._id}">
+      <span class="item-chevron">▶</span>
+      <span class="item-name">${esc(item.name) || '<em style="color:var(--text3)">Unnamed</em>'}</span>
+      ${metaStr ? `<span class="item-meta">${metaStr}</span>` : ''}
+      ${tagsHtml}
+      <button class="btn btn-ghost btn-icon dup-btn" data-id="${item._id}" title="Duplicate" style="font-size:11px">⧉</button>
+      <button class="btn btn-danger btn-icon del-btn" data-id="${item._id}" title="Remove">✕</button>
+    </div>
+    <div class="item-body">
+      ${buildForm(item)}
+    </div>
+  </div>`;
+}
+
+function buildMetaStr(item) {
+  if (activeTab === 'powers') {
+    const parts = [];
+    if (item.set) parts.push(item.set);
+    if (item.pageRef) parts.push(`p.${item.pageRef}`);
+    if (item.minRank > 1) parts.push(`Rank ${item.minRank}+`);
+    if (item.cost) parts.push(`${item.cost} Focus`);
+    return parts.join(' · ');
+  }
+  if (activeTab === 'iconicItems' || activeTab === 'battleSuits') {
+    return item.origin || '';
+  }
+  if (activeTab === 'iconicItemRestriction') {
+    return item.restrictionType || '';
+  }
+  return '';
+}
+
+function buildTagPills(item) {
+  const pills = [];
+  if (activeTab === 'powers') {
+    if (item.variableCost) pills.push(['Variable Cost', 'gold']);
+    if (item.repeatable) pills.push(['Repeatable', '']);
+    if (item.customizable) pills.push(['Customizable', '']);
+    if ((item.attackTypes||[]).length) pills.push([item.attackTypes.join('/') + ' Attack', 'red']);
+    if ((item.checkTypes||[]).length) pills.push([item.checkTypes.join('/') + ' Check', 'green']);
+  }
+  if (activeTab === 'traits' || activeTab === 'tags') {
+    if (item.repeatable) pills.push(['Repeatable', '']);
+    if (item.customizable) pills.push(['Customizable', '']);
+  }
+  if (!pills.length) return '';
+  return `<div class="item-tags-row">${pills.map(([t,c]) => `<span class="tag-pill${c?' '+c:''}">${esc(t)}</span>`).join('')}</div>`;
+}
+
+function buildForm(item) {
+  switch (activeTab) {
+    case 'origins':      return formOriginOcc(item, false);
+    case 'occupations':  return formOriginOcc(item, true);
+    case 'traits':       return formTrait(item);
+    case 'tags':         return formTag(item);
+    case 'powers':       return formPower(item);
+    case 'iconicItemPowers': return formItemPower(item);
+    case 'iconicItemRestriction': return formItemRestriction(item);
+    case 'iconicItems':  return formIconicItem(item);
+    case 'battleSuits':  return formIconicItem(item);
+    case 'basicItems':   return formBasicItem(item);
+    case 'narrativeItems': return formBasicItem(item);
+    default:             return formBasicItem(item);
+  }
+}
+
+// ── Origin / Occupation ────────────────────────────────────────────────
+
+function formOriginOcc(item, isOcc) {
+  return `
+  <div class="fields-grid">
+    ${fieldText(item, 'name', 'Name')}
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    ${fieldList(item, 'grantedTraits', 'Granted Traits')}
+    ${fieldList(item, 'grantedTags', 'Granted Tags')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldList(item, 'requiredPowers', 'Required Powers (or whitelist if allowedPowersOnly)')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Description')}
+  </div>
+  <div class="section-divider">Adjustments (JSON)</div>
+  ${fieldJson(item, 'adjustments', 'Adjustments')}`;
+}
+
+// ── Trait ────────────────────────────────────────────────────────────
+
+function formTrait(item) {
+  return `
+  <div class="fields-grid">
+    ${fieldText(item, 'name', 'Name')}
+  </div>
+  <div class="check-group" style="margin-top:10px">
+    ${checkToggle(item, 'repeatable', item._id, 'Repeatable')}
+    ${checkToggle(item, 'customizable', item._id, 'Customizable (requires custom value)')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Description')}
+  </div>
+  <div class="section-divider">Adjustments (JSON)</div>
+  ${fieldJson(item, 'adjustments', 'Adjustments')}`;
+}
+
+// ── Tag ────────────────────────────────────────────────────────────
+
+function formTag(item) {
+  return `
+  <div class="fields-grid">
+    ${fieldText(item, 'name', 'Name')}
+  </div>
+  <div class="check-group" style="margin-top:10px">
+    ${checkToggle(item, 'repeatable', item._id, 'Repeatable')}
+    ${checkToggle(item, 'customizable', item._id, 'Customizable')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldList(item, 'prerequisites', 'Prerequisites (comma-separated)')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Description')}
+  </div>`;
+}
+
+// ── Power ────────────────────────────────────────────────────────────
+
+function formPower(item) {
+  const dur = item.duration || {};
+  const act = item.action || {};
+  const atkTypes = item.attackTypes || [];
+  const chkTypes = item.checkTypes || [];
+  return `
+  <div class="fields-grid col3">
+    ${fieldText(item, 'name', 'Power Name')}
+    ${fieldText(item, 'set', 'Power Set (e.g. "basic", "flight")')}
+    ${fieldText(item, 'pageRef', 'Page Reference')}
+  </div>
+  <div class="fields-grid col4" style="margin-top:10px">
+    ${fieldNumber(item, 'cost', 'Focus Cost')}
+    ${fieldNumber(item, 'minRank', 'Min Rank')}
+    ${fieldNumber(item, 'range', 'Range (squares)')}
+    <div class="field">
+      <div class="field-label">Flags</div>
+      <div class="check-group">
+        ${checkToggle(item, 'variableCost', item._id, 'Variable Cost')}
+        ${checkToggle(item, 'repeatable', item._id, 'Repeatable')}
+        ${checkToggle(item, 'customizable', item._id, 'Customizable')}
+      </div>
+    </div>
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    ${fieldList(item, 'prerequisites', 'Prerequisites (comma-separated, e.g. "Mighty 3, Rank 2")')}
+    ${fieldText(item, 'summary', 'Summary (shown in tooltip)')}
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    <div class="field">
+      <div class="field-label">Duration</div>
+      <div class="check-group">
+        ${checkBox(item._id, 'duration', 'P', !!dur.P, 'Permanent (P)')}
+        ${checkBox(item._id, 'duration', 'I', !!dur.I, 'Instant (I)')}
+        ${checkBox(item._id, 'duration', '1', !!dur['1'], '1 Round (1)')}
+        ${checkBox(item._id, 'duration', 'C', !!dur.C, 'Concentration (C)')}
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">Action</div>
+      <div class="check-group">
+        ${checkBox(item._id, 'action', 'S', !!act.S, 'Standard (S)')}
+        ${checkBox(item._id, 'action', 'M', !!act.M, 'Movement (M)')}
+        ${checkBox(item._id, 'action', 'R', !!act.R, 'Reaction (R)')}
+      </div>
+    </div>
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    <div class="field">
+      <div class="field-label">Attack Types</div>
+      <div class="check-group">
+        ${checkBox(item._id, 'attackTypes', 'melee',   atkTypes.includes('melee'),   'Melee')}
+        ${checkBox(item._id, 'attackTypes', 'agility', atkTypes.includes('agility'), 'Agility')}
+        ${checkBox(item._id, 'attackTypes', 'ego',     atkTypes.includes('ego'),     'Ego')}
+        ${checkBox(item._id, 'attackTypes', 'logic',   atkTypes.includes('logic'),   'Logic')}
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">Check Types</div>
+      <div class="check-group">
+        ${checkBox(item._id, 'checkTypes', 'melee',      chkTypes.includes('melee'),      'Melee')}
+        ${checkBox(item._id, 'checkTypes', 'agility',    chkTypes.includes('agility'),    'Agility')}
+        ${checkBox(item._id, 'checkTypes', 'resilience', chkTypes.includes('resilience'), 'Resilience')}
+        ${checkBox(item._id, 'checkTypes', 'vigilance',  chkTypes.includes('vigilance'),  'Vigilance')}
+        ${checkBox(item._id, 'checkTypes', 'ego',        chkTypes.includes('ego'),        'Ego')}
+        ${checkBox(item._id, 'checkTypes', 'logic',      chkTypes.includes('logic'),      'Logic')}
+      </div>
+    </div>
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    ${fieldText(item, 'trigger', 'Trigger (for Reaction powers)')}
+    ${fieldText(item, 'flavor', 'Flavor Text (italics in combat actions)')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Full Description')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'fantasticEffect', 'Fantastic Effect')}
+  </div>
+  <div class="section-divider">Adjustments (JSON)</div>
+  ${fieldJson(item, 'adjustments', 'Adjustments — e.g. {"meleeDmgBonus": 5} or {"featureNote": {"melee": "..."}}')}`;
+}
+
+// ── Iconic Item Power ────────────────────────────────────────────────
+
+function formItemPower(item) {
+  const atk = item.attackTypes || [];
+  return `
+  <div class="fields-grid">
+    ${fieldText(item, 'name', 'Name')}
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    ${fieldText(item, 'grantedTag', 'Granted Tag (single)')}
+    ${fieldList(item, 'grantedTraits', 'Granted Traits (comma-separated)')}
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    <div class="field">
+      <div class="field-label">Attack Types</div>
+      <div class="check-group">
+        ${checkBox(item._id, 'attackTypes', 'melee',   atk.includes('melee'),   'Melee')}
+        ${checkBox(item._id, 'attackTypes', 'agility', atk.includes('agility'), 'Agility')}
+        ${checkBox(item._id, 'attackTypes', 'ego',     atk.includes('ego'),     'Ego')}
+        ${checkBox(item._id, 'attackTypes', 'logic',   atk.includes('logic'),   'Logic')}
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">Flags</div>
+      <div class="check-group">
+        ${checkToggle(item, 'customizable', item._id, 'Customizable')}
+      </div>
+    </div>
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldText(item, 'flavor', 'Flavor Text')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Description')}
+  </div>
+  <div class="section-divider">Adjustments (JSON)</div>
+  ${fieldJson(item, 'adjustments', 'Adjustments')}`;
+}
+
+// ── Item Restriction ────────────────────────────────────────────────
+
+function formItemRestriction(item) {
+  const RT = ['', 'Obvious', 'Unusual', 'Significant', 'Severe', 'Extreme'];
+  return `
+  <div class="fields-grid col2">
+    ${fieldText(item, 'name', 'Restriction Name')}
+    <div class="field">
+      <div class="field-label">Restriction Type</div>
+      <select class="sel" data-id="${item._id}" data-field="restrictionType">
+        ${RT.map(r => `<option value="${r}"${item.restrictionType===r?' selected':''}>${r || '(none)'}</option>`).join('')}
+      </select>
+    </div>
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldList(item, 'grantedTags', 'Granted Tags (comma-separated)')}
+  </div>`;
+}
+
+// ── Iconic Item / Battle Suit ────────────────────────────────────────
+
+function formIconicItem(item) {
+  return `
+  <div class="fields-grid col2">
+    ${fieldText(item, 'name', 'Item Name')}
+    ${fieldText(item, 'origin', 'Origin (e.g. "Magic", "High-Tech")')}
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    ${fieldList(item, 'powers', 'Powers (comma-separated)')}
+    ${fieldList(item, 'restrictions', 'Restrictions (comma-separated)')}
+  </div>
+  <div class="fields-grid col2" style="margin-top:10px">
+    ${fieldList(item, 'tags', 'Tags (comma-separated)')}
+    ${fieldText(item, 'note', 'Note')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Description')}
+  </div>`;
+}
+
+// ── Basic / Narrative Item ────────────────────────────────────────────
+
+function formBasicItem(item) {
+  return `
+  <div class="fields-grid">
+    ${fieldText(item, 'name', 'Name')}
+  </div>
+  <div class="fields-grid" style="margin-top:10px">
+    ${fieldTextarea(item, 'description', 'Description')}
+  </div>
+  <div class="section-divider">Adjustments (JSON)</div>
+  ${fieldJson(item, 'adjustments', 'Adjustments')}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// FIELD HELPERS
+// ─────────────────────────────────────────────────────────────────────────
+
+function fieldText(item, field, label) {
+  return `<div class="field">
+    <div class="field-label">${label}</div>
+    <input class="fi" value="${esc(item[field] || '')}" data-id="${item._id}" data-field="${field}">
+  </div>`;
+}
+
+function fieldNumber(item, field, label) {
+  return `<div class="field">
+    <div class="field-label">${label}</div>
+    <input class="fi" type="number" value="${item[field] || 0}" data-id="${item._id}" data-field="${field}" data-type="number">
+  </div>`;
+}
+
+function fieldTextarea(item, field, label) {
+  return `<div class="field">
+    <div class="field-label">${label}</div>
+    <textarea class="ta" data-id="${item._id}" data-field="${field}">${esc(item[field] || '')}</textarea>
+  </div>`;
+}
+
+function fieldList(item, field, label) {
+  const val = (item[field] || []).join(', ');
+  return `<div class="field">
+    <div class="field-label">${label}</div>
+    <input class="fi" value="${esc(val)}" data-id="${item._id}" data-field="${field}" data-type="list" placeholder="Comma-separated">
+  </div>`;
+}
+
+function fieldJson(item, field, label) {
+  const val = JSON.stringify(item[field] || {}, null, 2);
+  return `<div class="field">
+    <div class="field-label">${label}</div>
+    <textarea class="ta json-editor" style="min-height:80px" data-id="${item._id}" data-field="${field}" data-type="json">${esc(val)}</textarea>
+  </div>`;
+}
+
+function checkBox(itemId, field, key, checked, labelText) {
+  return `<label class="check-item${checked?' checked':''}" data-id="${itemId}" data-field="${field}" data-key="${key}">
+    <input type="checkbox"${checked?' checked':''}>
+    ${esc(labelText)}
+  </label>`;
+}
+
+function checkToggle(item, field, itemId, labelText) {
+  const checked = !!item[field];
+  return `<label class="check-item${checked?' checked':''}" data-id="${itemId}" data-field="${field}" data-key="${field}">
+    <input type="checkbox"${checked?' checked':''}>
+    ${esc(labelText)}
+  </label>`;
+}
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// EXPORT — strip internal _id before saving
+// ─────────────────────────────────────────────────────────────────────────
+
+function exportLib() {
+  const out = { name: lib.name };
+  SECTIONS.forEach(s => {
+    out[s.key] = (lib[s.key] || []).map(item => {
+      const clean = { ...item };
+      delete clean._id;
+      return clean;
+    });
+  });
+  return out;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// EVENTS
+// ─────────────────────────────────────────────────────────────────────────
+
+document.getElementById('libName').addEventListener('change', e => {
+  lib.name = e.target.value.trim() || 'MMRPG Library';
+  renderHeaderCounts();
+});
+
+document.getElementById('addBtn').addEventListener('click', () => {
+  const item = defaultItem(activeTab);
+  lib[activeTab] = [item, ...lib[activeTab]]; // add at top
+  expandedIds.add(item._id);
+  searchVal = '';
+  document.getElementById('searchInput').value = '';
+  render();
+  document.querySelector('.list-area')?.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchVal = e.target.value;
+  renderList();
+});
+
+document.getElementById('setFilter').addEventListener('change', e => {
+  setFilter = e.target.value;
+  renderList();
+});
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  lib.name = document.getElementById('libName').value.trim() || 'MMRPG Library';
+  const out = exportLib();
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${lib.name.replace(/[\\/:*?"<>|]/g, '_')}.json`;
+  a.click();
+});
+
+document.getElementById('importBtn').addEventListener('click', () => {
+  document.getElementById('importFile').click();
+});
+
+document.getElementById('importFile').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const raw = JSON.parse(ev.target.result);
+      loadLib(raw);
+      document.getElementById('libName').value = lib.name;
+      expandedIds.clear();
+      searchVal = ''; setFilter = '';
+      document.getElementById('searchInput').value = '';
+      render();
+    } catch { alert('Invalid library JSON.'); }
+  };
+  r.readAsText(f); e.target.value = '';
+});
+
+// ─────────────────────────────────────────────────────────────────────────
+// BOOT
+// ─────────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
